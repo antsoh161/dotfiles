@@ -5,12 +5,16 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-export LS_OPTIONS='--color=auto'
-eval "$(dircolors -b $XDG_CONFIG_HOME/.dircolors)"
-alias ls='ls $LS_OPTIONS'
-alias diff='diff $LS_OPTIONS'
-alias ip='ip $LS_OPTIONS'
-alias grep='grep $LS_OPTIONS'
+# Check if nvim is available
+if command -v nvim &>/dev/null; then
+  export EDITOR=nvim
+else
+  export EDITOR=vim
+fi
+
+if [ -z "$XDG_CONFIG_HOME" ] ; then
+    export XDG_CONFIG_HOME="$HOME/.config"
+fi
 
 git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
@@ -24,11 +28,26 @@ color_formatter() {
   fi
 }
 
+# Use 256 color terminal if it exists
+if [ -e /lib/terminfo/x/xterm-256color ]; then
+    export TERM='xterm-256color'
+else
+    export TERM='xterm-color'
+fi
+
 PS1='[\[\e[1;37m\]\u\e[1;31m\]@\e[1;37m\]\h]\e[1;31m\]$(git_branch) \e[1;37m\]→ \[\e[36m\]\w\[\e[0m\] '
-#PS1='[\[\u\e[1;31m\]@\e[1;37m\]\h]\e[1;31m\]$(git_branch) \e[1;37m\]→ \[\e[36m\]\w\[\e[0m\] '
-#source /home/anton/.config/asbash/asbash.bashrc
-#PS1='[\u@\h \W]\$ '
+
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
+alias ls='ls --color=auto'
+alias diff='diff --color=auto'
+alias ip='ip --color=auto'
+alias grep='grep --color=auto'
+#
 xset r rate 300 50
-source ~/.config/asbash/asbashrc
+
 eval "$(tmuxifier init -)"
-alias config='/usr/bin/git --git-dir=/home/anton/dotfiles/ --work-tree=/home/anton'
+eval "$(dircolors $HOME/.ls_colors)"
+alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
