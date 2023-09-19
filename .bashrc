@@ -16,6 +16,8 @@ if [ -z "$XDG_CONFIG_HOME" ] ; then
     export XDG_CONFIG_HOME="$HOME/.config"
 fi
 
+export PATH="$HOME/.tmuxifier/bin:$PATH"
+
 git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
