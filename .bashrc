@@ -47,7 +47,8 @@ alias ls='ls --color=auto'
 alias diff='diff --color=auto'
 alias ip='ip --color=auto'
 alias grep='grep --color=auto'
-#
+
+export LS_COLORS="$LS_COLORS:di=1;34:"
 xset r rate 300 50
 
 eval "$(tmuxifier init -)"
