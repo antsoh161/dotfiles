@@ -1,0 +1,98 @@
+#!/bin/bash
+set -euo pipefail
+
+files=($(find ./build -type f -name "compile_commands.json"))
+num_files=${#files[@]}
+
+if [ $num_files -eq 0 ]; then
+  echo "No compile_commands.json files found in ./build."
+  exit 1
+fi
+
+echo "Found the following compile_commands.json file(s) in ./build:"
+for ((i=0; i<num_files; i++)); do
+  echo "[$i] ${files[i]}"
+done
+echo -n "Select a file by entering its index (0-$((num_files-1))): "
+read user_choice
+
+if [[ ! $user_choice =~ ^[0-9]+$ ]] || [ $user_choice -lt 0 ] || [ $user_choice -ge $num_files ]; then
+  echo "Invalid selection. Aborting."
+  exit 1
+fi
+
+selected_file=${files[user_choice]}
+
+# Check if .clangd already exists
+if [ -e .clangd ]; then
+  echo ".clangd file already exists. Do you want to overwrite it? (y/n): "
+  read overwrite_choice
+
+  if [ "$overwrite_choice" != "y" ]; then
+    echo "Aborted."
+    exit 1
+  fi
+
+  # Remove existing .clangd and symlink
+  rm .clangd compile_commands.json
+  echo "Existing .clangd file and symlink removed."
+fi
+
+if [ -e compile_commands.json ]; then
+   rm compile_commands.json
+fi
+
+# Create a symlink in the current directory
+ln -s "$selected_file" compile_commands.json
+if [[ -n "${CLANGDIFY_COMPILER_PATHS:-}" ]]; then
+    IFS=";" read -r -a paths <<< "$CLANGDIFY_COMPILER_PATHS"
+    echo "Searching for compilers in CLANGDIFY_COMPILER_PATHS: $CLANGDIFY_COMPILER_PATHS"
+
+    compilers=()
+    for path in "${paths[@]}"; do
+        if command -v fd > /dev/null; then
+            found_compilers=$(fd '*-g++' "$path" --glob -x realpath 2>/dev/null)
+        else
+            found_compilers=$(find "$path" -type f -name '*-g++' -exec realpath {} \; 2>/dev/null)
+        fi
+        while IFS= read -r compiler; do
+            compilers+=("$compiler")
+        done <<< "$found_compilers"
+    done
+    if [[ ${#compilers[@]} -eq 0 ]]; then
+        echo "No compilers found. Defaulting to g++."
+        compiler="g++"
+    else
+        echo "Found the following compilers:"
+        select compiler in "${compilers[@]}" "g++"; do
+            if [[ -n "$compiler" ]]; then
+                echo "You selected: $compiler"
+                break
+            else
+                echo "Invalid choice. Please select a valid compiler."
+            fi
+        done
+    fi
+else
+    echo "CLANGDIFY_COMPILER_PATHS is not set or empty. Defaulting to g++."
+    compiler="g++"
+fi
+cat <<EOF >.clangd
+CompileFlags:
+    Add: [-xc++, -Wall]
+    Remove: [-W*, -m*, --sysroot]
+    Compiler: $compiler
+Index:
+    Background: Build
+    StandardLibrary: Yes
+Diagnostics:
+    UnusedIncludes: Strict
+Completion:
+    AllScopes: Yes
+InlayHints:
+    Enabled: Yes
+    ParameterNames: Yes
+    DeducedTypes: Yes
+Hover:
+    ShowAKA: Yes
+EOF

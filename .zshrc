@@ -103,6 +103,7 @@ else
   export EDITOR='nvim'
 fi
 
+xset r rate 300 50
 source $XDG_CONFIG_HOME/asbash/asbashrc
 alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 
