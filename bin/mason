@@ -1,0 +1,57 @@
+#!/bin/bash
+
+MASON_BIN="$HOME/.local/share/nvim/mason/bin"
+
+_mason_completions() {
+    local cur cmd
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    cmd="${COMP_WORDS[1]}"
+
+    case "${COMP_CWORD}" in
+        1)
+            COMPREPLY=( $(compgen -W "ls run" -- ${cur}) )
+            ;;
+        2)
+            if [[ ${cmd} == "run" ]]; then
+                COMPREPLY=( $(compgen -W "$(ls -1 ${MASON_BIN})" -- ${cur}) )
+            fi
+            ;;
+    esac
+    return 0
+}
+
+complete -F _mason_completions mason
+
+if [[ "${BASH_SOURCE[0]}" != "${0}" ]]; then
+    return
+fi
+
+case "$1" in
+    "ls")
+        ls -1 "$MASON_BIN"
+        ;;
+    "run")
+        if [ -z "$2" ]; then
+             selected=$(ls ~/.local/share/nvim/mason/bin | fzf --height 40% --border)
+             if [ -n "$selected" ]; then
+                 ~/.local/share/nvim/mason/bin/$selected "${@:3}"
+             fi
+            exit 0
+        fi
+        if [ -x "$MASON_BIN/$2" ]; then
+            shift # remove "run"
+            "$MASON_BIN/$1" "${@:2}"
+        else
+            echo "Error: '$2' not found in Mason bin or not executable"
+            exit 1
+        fi
+        ;;
+    *)
+        echo "Usage: mason <command>"
+        echo "Commands:"
+        echo "  ls     - List available Mason tools"
+        echo "  run    - Run a Mason tool (e.g., mason run prettier file.js)"
+        exit 1
+        ;;
+esac

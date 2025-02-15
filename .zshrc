@@ -8,7 +8,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME=""
+ZSH_THEME="agnoster"
 
 export HISTSIZE=10000
 export SAVEHIST=$HISTSIZE
@@ -94,7 +94,7 @@ autoload -U promptinit; promptinit
 zstyle :prompt:pure:git:stash show yes
 prompt pure
 
-printf '\033]2;%s\033\\' "$(hostname)"
+# printf '\033]2;%s\033\\' "$(hostname) asdf"
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -104,8 +104,9 @@ else
 fi
 
 xset r rate 300 50
-source $XDG_CONFIG_HOME/asbash/asbashrc
+export PATH=$PATH:$HOME/bin
 alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
+# bindkey '^[[Z>' autosuggest-accept
 
 
 # Compilation flags
