@@ -1,0 +1,31 @@
+[user]
+	email = REDACTED
+  name = REDACTED
+
+[alias]
+  whatsnew = log origin/master@{1}..origin/master@{0}
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  ci = commit
+  ca = ci -a
+  s = status -sb
+  st = status
+  co = checkout
+  review = diff main...HEAD
+  amend = ci --amend
+  reword = amend --only
+  ri = rebase -i
+  smu = submodule update --recursive --init
+
+[diff]
+  tool = meld
+
+[merge]
+  tool = meld
+
+[color]
+        branch = auto
+        diff = auto
+        interactive = auto
+        status = auto
+[credential]
+	helper = store
