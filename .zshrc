@@ -105,7 +105,19 @@ fi
 
 xset r rate 300 50
 export PATH=$PATH:$HOME/bin
-alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
+alias dot='/usr/bin/git --git-dir=$HOME/.dot/ --work-tree=$HOME'
+
+: "${XDG_CONFIG_HOME:=$HOME/.config}"
+export XDG_CONFIG_HOME
+
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "$HOME/.nvm" || printf %s "$XDG_CONFIG_HOME/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" > /dev/null 2>&1
+
+alias ff="firefox & disown && exit"
+
+[ -f ~/.secretrc ] && source ~/.secretrc
+export PATH=$PATH:~/.cargo/bin
+
 # bindkey '^[[Z>' autosuggest-accept
 
 

@@ -74,19 +74,22 @@ alias la='ls -A'
 alias l='ls -CF'
 
 # catppucin-mocha
-export FZF_DEFAULT_OPTS=" \
---color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
---color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
---color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
---color=selected-bg:#45475a \
---multi"
+# export FZF_DEFAULT_OPTS=" \
+# --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \ --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+# --color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
+# --color=selected-bg:#45475a \
+# --multi"
 #
 [ -f ~/.fzf/shell/fzf.bash ] && source ~/.fzf/shell/fzf.bash
 
 # Somehow this resets every time i change keyboard between PCs
 xset r rate 300 50
 
-source $XDG_CONFIG_HOME/asbash/asbashrc
-alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
+alias config='/usr/bin/git --git-dir=$HOME/.dot/ --work-tree=$HOME'
 
-export DOCKER_CONTAINER_REGISTRY_TOKEN=$(cat ~/.gh_docker_secret.txt)
+[ -f ~/.secretrc ] && source ~/.secretrc
+
+
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
