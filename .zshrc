@@ -118,6 +118,11 @@ alias ff="firefox & disown && exit"
 [ -f ~/.secretrc ] && source ~/.secretrc
 export PATH=$PATH:~/.cargo/bin
 
+function mdd() {
+  pandoc $1 > /tmp/$1.html
+  xdg-open /tmp/$1.html
+}
+
 # bindkey '^[[Z>' autosuggest-accept
 
 
