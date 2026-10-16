@@ -1,0 +1,29 @@
+vscodevim.vim                          # vim emulation + leader keymaps
+catppuccin.catppuccin-vsc              # colorscheme (catppuccin-mocha)
+catppuccin.catppuccin-vsc-icons        # nvim-web-devicons
+usernamehw.errorlens                   # inline diagnostics (virtual_text)
+haphazarddev.oil-code                  # oil.nvim
+przybylski.cursor-harpoon              # harpoon (fork of vscode-harpoon)
+streetsidesoftware.code-spell-checker  # spell in markdown/gitcommit
+
+llvm-vs-code-extensions.vscode-clangd  # clangd
+rust-lang.rust-analyzer                # rust_analyzer
+sumneko.lua                            # lua_ls
+detachhead.basedpyright                # basedpyright
+charliermarsh.ruff                     # ruff
+ms-python.python                       # needed by debugpy
+mads-hartmann.bash-ide-vscode          # bashls
+redhat.vscode-yaml                     # yamlls
+docker.docker                          # dockerls
+coolbear.systemd-unit-file             # systemd
+BazelBuild.vscode-bazel                # starpls
+twxs.cmake                             # cmake
+
+esbenp.prettier-vscode                 # prettier
+JohnnyMorganz.stylua                   # stylua
+foxundermoon.shell-format              # shfmt
+tamasfe.even-better-toml               # toml
+
+vadimcn.vscode-lldb                    # rust / cpp (codelldb)
+ms-python.debugpy                      # python
+rogalmic.bash-debug                    # bash

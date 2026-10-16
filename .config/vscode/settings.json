@@ -1,0 +1,185 @@
+{
+  "workbench.colorTheme": "Catppuccin Mocha",
+  "workbench.iconTheme": "catppuccin-mocha",
+  "catppuccin.colorOverrides": {
+    "mocha": {
+      "base": "#000000",
+      "mantle": "#000000",
+      "crust": "#000000"
+    }
+  },
+  "editor.fontFamily": "'Iosevka Nerd Font', monospace",
+  "editor.fontSize": 16,
+  "terminal.integrated.fontFamily": "'Iosevka Nerd Font'",
+  "workbench.startupEditor": "none",
+  "window.menuBarVisibility": "toggle",
+  "editor.minimap.enabled": false,
+  "telemetry.telemetryLevel": "off",
+
+  "editor.tabSize": 3, // shiftwidth / tabstop = 3
+  "editor.insertSpaces": true, // expandtab
+  "editor.detectIndentation": false,
+  "editor.lineNumbers": "on", // number (no rnu by default)
+  "editor.renderLineHighlight": "line", // cursorline
+  "editor.wordWrap": "off", // nowrap
+  "editor.cursorSurroundingLines": 8, // scrolloff = 8
+  "editor.guides.indentation": true, // snacks indent
+  "editor.glyphMargin": true, // signcolumn = yes
+  "editor.codeLens": false, // codelens off until toggled
+  "editor.inlayHints.enabled": "offUnlessPressed", // hold Ctrl+Alt to show
+  "editor.formatOnSave": false, // you format manually with <leader>lf
+  "editor.suggest.preview": false, // blink ghost_text = false
+  "editor.acceptSuggestionOnEnter": "on",
+  "editor.suggest.maxVisibleSuggestions": 10, // pumheight
+  "workbench.editor.openSideBySideDirection": "right", // splitright
+  "files.autoSave": "off",
+  "files.encoding": "utf8",
+
+  "[markdown]": {
+    "editor.wordWrap": "on"
+  },
+  "[git-commit]": {
+    "editor.wordWrap": "on"
+  },
+  "cSpell.enabledFileTypes": {
+    "*": false,
+    "markdown": true,
+    "git-commit": true
+  },
+
+  "extensions.experimental.affinity": {
+    "vscodevim.vim": 1
+  },
+  "vim.leader": "<space>",
+  "vim.useSystemClipboard": true, // clipboard = unnamedplus
+  "vim.hlsearch": true,
+  "vim.incsearch": true,
+  "vim.ignorecase": true,
+  "vim.smartcase": true,
+  "vim.timeout": 1000, // timeoutlen
+  "vim.whichwrap": "h,l,<,>,[,]",
+  "vim.iskeyword": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?",
+  "vim.highlightedyank.enable": true, // TextYankPost highlight
+  "vim.highlightedyank.duration": 200,
+  "vim.handleKeys": {
+    "<C-p>": false // keep Ctrl+P as quick open
+  },
+
+  "vim.normalModeKeyBindingsNonRecursive": [
+    { "before": ["0"], "after": ["^"] },
+    { "before": ["J"], "after": ["5", "j"] },
+    { "before": ["K"], "after": ["5", "k"] },
+    { "before": ["<leader>", "J"], "after": ["J"] },
+    { "before": ["<leader>", "n", "h"], "commands": [":nohl"] },
+    { "before": ["<leader>", "w"], "commands": ["workbench.action.splitEditorRight"] },
+    { "before": ["<leader>", "s", "s"], "commands": ["workbench.action.files.save"] },
+    { "before": ["<leader>", "s", "a"], "commands": ["workbench.action.files.saveAll"] },
+
+    { "before": ["L"], "commands": ["workbench.action.nextEditorInGroup"] },
+    { "before": ["H"], "commands": ["workbench.action.previousEditorInGroup"] },
+    { "before": ["Q"], "commands": ["workbench.action.closeActiveEditor"] },
+
+    { "before": ["<leader>", "/"], "commands": ["editor.action.commentLine"] },
+
+    { "before": ["<leader>", "e", "e"], "commands": ["oil-code.open"] },
+
+    { "before": ["<leader>", ","], "commands": ["workbench.action.showAllEditorsByMostRecentlyUsed"] },
+    { "before": ["<leader>", ":"], "commands": ["workbench.action.showCommands"] },
+    { "before": ["<leader>", "f", "b"], "commands": ["workbench.action.showAllEditorsByMostRecentlyUsed"] },
+    { "before": ["<leader>", "f", "f"], "commands": ["workbench.action.quickOpen"] },
+    { "before": ["<leader>", "f", "g"], "commands": ["workbench.action.quickOpen"] },
+    { "before": ["<leader>", "f", "t"], "commands": ["workbench.action.quickTextSearch"] },
+    { "before": ["<leader>", "f", "T"], "commands": ["workbench.action.findInFiles"] },
+    { "before": ["<leader>", "f", "r"], "commands": ["workbench.action.openRecent"] },
+
+    { "before": ["<leader>", "G", "G"], "commands": ["workbench.view.scm"] },
+    { "before": ["<leader>", "G", "d"], "commands": ["git.openChange"] },
+    { "before": ["<leader>", "G", "t"], "commands": ["git.blame.toggleEditorDecoration"] },
+    { "before": ["<leader>", "g", "s"], "commands": ["workbench.view.scm"] },
+    { "before": ["<leader>", "g", "c"], "commands": ["timeline.focus"] },
+
+    { "before": ["<leader>", "t", "t"], "commands": ["workbench.actions.view.toggleProblems"] },
+    { "before": ["<leader>", "t", "T"], "commands": ["workbench.actions.view.toggleProblems"] },
+    { "before": ["<leader>", "t", "s"], "commands": ["outline.focus"] },
+    { "before": ["<leader>", "t", "l"], "commands": ["references-view.findReferences"] },
+
+    { "before": ["<leader>", "h", "a"], "commands": ["cursor-harpoon.addEditor"] },
+    { "before": ["<leader>", "h", "1"], "commands": ["cursor-harpoon.gotoEditor1"] },
+    { "before": ["<leader>", "h", "2"], "commands": ["cursor-harpoon.gotoEditor2"] },
+    { "before": ["<leader>", "h", "3"], "commands": ["cursor-harpoon.gotoEditor3"] },
+    { "before": ["<leader>", "h", "4"], "commands": ["cursor-harpoon.gotoEditor4"] },
+    { "before": ["<leader>", "h", "j"], "commands": ["cursor-harpoon.navigatePreviousEditor"] },
+    { "before": ["<leader>", "h", "k"], "commands": ["cursor-harpoon.navigateNextEditor"] },
+    { "before": ["<leader>", "h", "e"], "commands": ["cursor-harpoon.editorQuickPick"] },
+
+    { "before": ["g", "d"], "commands": ["editor.action.revealDefinition"] },
+    { "before": ["g", "D"], "commands": ["editor.action.revealDeclaration"] },
+    { "before": ["g", "I"], "commands": ["editor.action.goToImplementation"] },
+    { "before": ["g", "r"], "commands": ["editor.action.goToReferences"] },
+    { "before": ["g", "l"], "commands": ["editor.action.showHover"] },
+    { "before": ["g", "h"], "commands": ["clangd.switchheadersource"] },
+    { "before": ["<leader>", "l", "a"], "commands": ["editor.action.quickFix"] },
+    { "before": ["<leader>", "l", "r"], "commands": ["editor.action.rename"] },
+    { "before": ["<leader>", "l", "s"], "commands": ["editor.action.triggerParameterHints"] },
+    { "before": ["<leader>", "l", "q"], "commands": ["workbench.actions.view.problems"] },
+    { "before": ["<leader>", "l", "j"], "commands": ["editor.action.marker.next"] },
+    { "before": ["<leader>", "l", "k"], "commands": ["editor.action.marker.prev"] },
+    { "before": ["<leader>", "l", "f"], "commands": ["editor.action.formatDocument"] },
+    { "before": ["<leader>", "c", "m"], "commands": ["workbench.view.extensions"] }, // Mason
+
+    { "before": ["<leader>", "d", "c"], "commands": ["workbench.action.debug.continue"] },
+    { "before": ["<leader>", "d", "s"], "commands": ["workbench.action.debug.selectandstart"] },
+    { "before": ["<leader>", "d", "l"], "commands": ["workbench.action.debug.start"] },
+    { "before": ["<leader>", "d", "i"], "commands": ["workbench.action.debug.stepInto"] },
+    { "before": ["<leader>", "d", "o"], "commands": ["workbench.action.debug.stepOver"] },
+    { "before": ["<leader>", "d", "O"], "commands": ["workbench.action.debug.stepOut"] },
+    { "before": ["<leader>", "d", "f"], "commands": ["editor.debug.action.runToCursor"] },
+    { "before": ["<leader>", "d", "t"], "commands": ["workbench.action.debug.stop"] },
+    { "before": ["<leader>", "d", "e"], "commands": ["workbench.action.debug.disconnect"] },
+    { "before": ["<leader>", "d", "b"], "commands": ["editor.debug.action.toggleBreakpoint"] },
+    { "before": ["<leader>", "d", "B"], "commands": ["editor.debug.action.conditionalBreakpoint"] },
+    { "before": ["<leader>", "d", "p"], "commands": ["editor.debug.action.addLogPoint"] },
+    { "before": ["<leader>", "d", "h"], "commands": ["editor.debug.action.showDebugHover"] },
+    { "before": ["<leader>", "d", "U"], "commands": ["workbench.action.debug.callStackUp"] },
+    { "before": ["<leader>", "d", "D"], "commands": ["workbench.action.debug.callStackDown"] },
+    { "before": ["<leader>", "d", "u"], "commands": ["workbench.view.debug"] },
+    { "before": ["<leader>", "d", "r"], "commands": ["workbench.debug.action.toggleRepl"] },
+
+    { "before": ["<leader>", "o", "r"], "commands": ["workbench.action.tasks.runTask"] },
+    { "before": ["<leader>", "o", "o"], "commands": ["workbench.action.tasks.showTasks"] },
+
+    { "before": ["<leader>", "m", "m"], "commands": ["notifications.showList"] },
+    { "before": ["<leader>", "m", "h"], "commands": ["notifications.showList"] },
+
+    { "before": ["<leader>", "a", "a"], "commands": ["workbench.action.chat.toggle"] },
+    { "before": ["<leader>", "a", "x"], "commands": ["workbench.action.chat.newChat"] }
+  ],
+
+  "vim.visualModeKeyBindingsNonRecursive": [
+    { "before": ["p"], "after": ["\"", "_", "d", "P"] },
+    { "before": ["<"], "commands": ["editor.action.outdentLines"] },
+    { "before": [">"], "commands": ["editor.action.indentLines"] },
+    { "before": ["<leader>", "/"], "commands": ["editor.action.commentLine"] },
+    { "before": ["<leader>", "l", "f"], "commands": ["editor.action.formatSelection"] },
+    { "before": ["<leader>", "d", "h"], "commands": ["editor.debug.action.showDebugHover"] },
+    { "before": ["<leader>", "a", "a"], "commands": ["workbench.action.chat.toggle"] },
+    { "before": ["<leader>", "a", "f"], "commands": ["inlineChat.start"] },
+    { "before": ["<leader>", "a", "e"], "commands": ["inlineChat.start"] }
+  ],
+
+  "prettier.semi": false,
+  "prettier.singleQuote": true,
+  "prettier.jsxSingleQuote": true,
+  "[javascript][typescript][javascriptreact][typescriptreact][json][jsonc][css][html][yaml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[lua]": { "editor.defaultFormatter": "JohnnyMorganz.stylua" },
+  "[shellscript]": { "editor.defaultFormatter": "foxundermoon.shell-format" },
+  "[python]": { "editor.defaultFormatter": "charliermarsh.ruff" },
+  "[rust]": { "editor.defaultFormatter": "rust-lang.rust-analyzer" },
+  "[c][cpp]": { "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd" },
+  "[toml]": { "editor.defaultFormatter": "tamasfe.even-better-toml" },
+
+  "python.languageServer": "None", // basedpyright provides it instead
+  "Lua.workspace.checkThirdParty": false
+}
